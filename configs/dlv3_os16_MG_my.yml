@@ -1,0 +1,27 @@
+model:
+    arch: deeplabv3_os16_MG
+data:
+    dataset: my
+    train_split: train
+    val_split: val
+    img_rows: 256
+    img_cols: 512
+    path: dataset/01_big/
+training:
+        #    train_iters: 300000
+    train_epoch: 20
+    batch_size: 14
+    val_interval: 1000
+    n_workers: 16
+    print_interval: 50
+    optimizer:
+        name: 'sgd'
+        lr: 1.0e-3
+        weight_decay: 0.0005
+        momentum: 0.99
+
+    loss:
+        name: 'cross_entropy'
+        size_average: True
+    lr_schedule:
+    resume: deeplabv3_os16_MG_my_best_model.pkl
