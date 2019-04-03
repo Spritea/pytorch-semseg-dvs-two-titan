@@ -29,7 +29,7 @@ class runningScore(object):
         t2=lp.flatten()
         fh=self._fast_hist(lt.flatten(), lp.flatten(), self.n_classes)
         self.confusion_matrix += fh
-        # print("kk")
+        ceshi=fh
 
     def get_scores(self):
         """Returns accuracy score evaluation result.
@@ -48,8 +48,12 @@ class runningScore(object):
         freq = hist.sum(axis=1) / hist.sum()
         fwavacc = (freq[freq > 0] * iu[freq > 0]).sum()
         cls_iu = dict(zip(range(self.n_classes), iu))
-        cls_pre = np.diag(hist) / hist.sum(axis=1)
-        cls_rec = np.diag(hist) / hist.sum(axis=0)
+        # cls_pre = np.diag(hist) / hist.sum(axis=1)
+        # cls_rec = np.diag(hist) / hist.sum(axis=0)
+        #axis=0 才是竖着求和,axis=1是横着求和
+        #此处混淆矩阵 右上角表头是预测值，左下角表头是真实值
+        cls_pre = np.diag(hist) / hist.sum(axis=0)
+        cls_rec = np.diag(hist) / hist.sum(axis=1)
 
         cls_f1 = 2 * cls_pre * cls_rec / (cls_pre + cls_rec)
         mean_f1 = np.nanmean(cls_f1)

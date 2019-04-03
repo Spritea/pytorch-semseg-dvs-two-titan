@@ -60,7 +60,7 @@ GT_Str = []
 for j in GT_File:
     GT_Str.append(str(j))
 
-th=0.98
+th=0
 # th=list(np.arange(0,0.99,0.02))
 pre=[]
 rec=[]
@@ -102,8 +102,8 @@ acc, cls_pre, cls_rec, cls_f1, cls_iu, hist = running_metrics_val.get_scores()
 tt = time.time() - t
 pre.append(cls_pre)
 rec.append(cls_rec)
-np.save("pre",pre)
-np.save("rec",rec)
+# np.save("pre",pre)
+# np.save("rec",rec)
 print("cls pre")
 print(cls_pre)
 print("cls rec")
